@@ -12,6 +12,10 @@ A **Fresnel Zone Plate** (FZP) is a diffractive optical element that focuses lig
 
 A **Photon Sieve** is an advanced variation of the Fresnel Zone Plate. Instead of using continuous rings, the Photon Sieve has a series of holes positioned at specific locations similar to a FZP. This design can achieve higher resolution and better control over the focal properties compared to traditional zone plates, but allows lesser light to pass through compared to a FZP.
 
+### Use in simulation
+
+Shoutout to [Diffractsim](https://github.com/rafael-fuente/diffractsim)! Masks generated using Fresnelier can directly be used in Diffractsim as an aperture by using the `ApertureFromImage` function, with parameter `image_size` given as the lens diameter statistic from the terminal output in Fresnelier.
+
 ## Features
 
 - Create high-resolution images of Fresnel Zone Plates for given parameters like wavelength, focal length, and the number of rings.
@@ -51,7 +55,7 @@ python fresnelier.py -w [wavelength] -wu [unit] -f [focal length] -fu [unit] -n 
 - `-n` or `--num_rings`: Number of rings to generate (required).
 - `-g` or `--generate`: What to generate: `f` for Fresnel, `p` for Photon Sieve, `r` for Random Photon Sieve. You can combine these (e.g., `fp` to generate both Fresnel and Photon Sieve).
 - `-d` or `--display`: Display the generated images in a plot (optional).
-- `-s` or `--save`: Save the generated images as PNG files (optional).
+- `-s` or `--save`: Save the generated images as PNG files in current working directory (optional).
 
 ### Example
 
@@ -64,7 +68,7 @@ python fresnelier.py -w 980 -wu nm -f 1 -fu mm -n 100 -g fp -d -s
 #### Output
 
 ##### Terminal
-```bash
+```
 Generating Fresnel Zone Plate: 100%|████████████████████████████████████████████████| 100/100 [00:00<00:00, 165.24it/s]
 Generating Photon Sieve: 100%|████████████████████████████████████████████████████████| 50/50 [00:00<00:00, 197.44it/s]
 Saving fresnel_zone_plate as 'fresnel_zone_plate_f1.0mm_w980.0nm_n100.png'
@@ -82,5 +86,5 @@ Saving photon_sieve as 'photon_sieve_f1.0mm_w980.0nm_n100.png'
 
 - Support for custom image scaling options
 - Support for more randomization options (currently a fixed algorithm)
-- Option to generate inverted mask/ custom colored mask
+- Option to generate inverted mask/custom colored mask
 - Support for phased FZP generation (phase controlled by RGB values of the pixels)
